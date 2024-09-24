@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- Header Section -->
 <header class="header_section bg-dark text-white py-3">
     <div class="container">
@@ -16,9 +16,41 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
+                    <span sec:authorize="!isAuthenticated()">
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Register</a>
                     </li>
+                    </span>
+                    <span sec:authorize="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    </span>
+                    <span sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+                    </span>
+                    <span sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    </span>
+                    <span sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                    </span>
+                    <span sec:authorize="hasAuthority('ACCESS_ADMIN_PANEL')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                    </span>
+                    <span sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EDITOR')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/editor">Editor</a>
+                    </li>
+                    </span>
                 </ul>
             </div>
         </nav>

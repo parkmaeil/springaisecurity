@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body class="sub_page">
+
+<!-- Hero Section -->
+<div class="hero_area">
+  <header th:replace="fragments/header :: header"></header>
+</div>
+
+<!-- About Section -->
+<section class="about_section py-5">
+  <div class="container">
+    <h2 class="mb-4">Editor List</h2>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  document.getElementById('displayYear').textContent = new Date().getFullYear();
+</script>
+</body>
+
+</html>
