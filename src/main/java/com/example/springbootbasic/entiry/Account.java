@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Account {
+public class Account { // implements UserDetails
 
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,7 @@ public class Account {
 
      @OneToMany(mappedBy = "account")
      private List<Post> posts;
-
+     // M : N
      @ManyToMany(fetch = FetchType.EAGER)
      @JoinTable(
             name = "account_authority",

@@ -1,5 +1,5 @@
 package com.example.springbootbasic.util;
-// 권한
+// 역할
 public enum Roles {
     USER("ROLE_USER"), ADMIN("ROLE_ADMIN"), EDITOR("ROLE_EDITOR");
     private String role;

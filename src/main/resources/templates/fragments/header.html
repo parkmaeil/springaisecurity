@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- Header Section -->
 <header class="header_section bg-dark text-white py-3">
     <div class="container">
@@ -13,10 +14,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
+                   <span sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <span th:text="${#authentication.principal.username}">성공한 회원의 email</span>
+                    </li>
+                    <li class="nav-item">
+                        <span th:each="auth : ${#authentication.authorities}" th:text="${auth.authority}"></span>
+                    </li>
+                   </span>
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <span sec:authorize="!isAuthenticated()">
+                    <span>
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Register</a>
                     </li>

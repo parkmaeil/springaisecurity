@@ -25,16 +25,16 @@ public class SeedData implements CommandLineRunner {
     private final AccountService accountService;
 
     private final AuthorityService authorityService;
-
+    // 자동실행
     @Override
     public void run(String... args) throws Exception {
 
-              for(Privileges auth : Privileges.values()){
+       for(Privileges auth : Privileges.values()){
                   Authority authority=new Authority();
                   authority.setId(auth.getId());
                   authority.setName(auth.getPrivilege());
                   authorityService.save(authority);
-              }
+       }
 
         Account account01 = new Account();
         Account account02 = new Account();
@@ -64,6 +64,7 @@ public class SeedData implements CommandLineRunner {
         account04.setFirstname("Editor");
         account04.setLastname("lastname");
         account04.setRole(Roles.EDITOR.getRole());
+        // 여기 설명~~~
         Set<Authority> authorities = new HashSet<>();
         authorityService.findById(Privileges.ACCESS_ADMIN_PANEL.getId()).ifPresent(authorities::add);
         authorityService.findById(Privileges.RESET_ANY_USER_PASSWORD.getId()).ifPresent(authorities::add);
@@ -77,11 +78,11 @@ public class SeedData implements CommandLineRunner {
         // 데이터 초기화....
                List<Post> posts=postService.getAll();
                if(posts.size()==0){
-                    Post post01=new Post();
-                    post01.setTitle("Post 01");
-                    post01.setBody("Post 01 body........................");
-                    post01.setAccount(account01);
-                    postService.save(post01);
+                   Post post01=new Post();
+                   post01.setTitle("Post 01");
+                   post01.setBody("Post 01 body........................");
+                   post01.setAccount(account01);
+                   postService.save(post01);
 
                    Post post02=new Post();
                    post02.setTitle("Post 02");

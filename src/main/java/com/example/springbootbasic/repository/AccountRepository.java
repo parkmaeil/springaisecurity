@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-
+    // 쿼리메서드
     Optional<Account> findOneByEmailIgnoreCase(String email);
 
 }

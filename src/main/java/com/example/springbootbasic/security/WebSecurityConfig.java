@@ -43,8 +43,8 @@ public class WebSecurityConfig {
                      .anyRequest().authenticated()
                 )
                 .formLogin(frm->frm
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
+                        .loginPage("/login") // ?
+                        .loginProcessingUrl("/loginProc")
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/", true)
@@ -55,8 +55,8 @@ public class WebSecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                )
-                .httpBasic(withDefaults());
+                );
+              //  .httpBasic(withDefaults());
         return  http.build();
 
     }
