@@ -2,6 +2,7 @@ package com.example.springbootbasic.service;
 
 import com.example.springbootbasic.entiry.Account;
 import com.example.springbootbasic.entiry.Authority;
+import com.example.springbootbasic.entiry.CustomAccount;
 import com.example.springbootbasic.repository.AccountRepository;
 import com.example.springbootbasic.util.Roles;
 import lombok.RequiredArgsConstructor;
@@ -62,17 +63,18 @@ public class AccountService  implements UserDetailsService {
         // session.setAttribute("account",account);
 
         // 권한 부여하기
-        List<GrantedAuthority> grantedAuthorityList=new ArrayList<>();
-        grantedAuthorityList.add(new SimpleGrantedAuthority(account.getRole()));
+        //List<GrantedAuthority> grantedAuthorityList=new ArrayList<>();
+        //grantedAuthorityList.add(new SimpleGrantedAuthority(account.getRole()));
 
-        for(Authority _auth :  account.getAuthorities()){
-             grantedAuthorityList.add(new SimpleGrantedAuthority(_auth.getName()));
-        }
-        System.out.println(grantedAuthorityList.toString());
+        //for(Authority _auth :  account.getAuthorities()){
+        //     grantedAuthorityList.add(new SimpleGrantedAuthority(_auth.getName()));
+        //}
+        //System.out.println(grantedAuthorityList.toString());
         // 1. return 전에 패스워드 체크가 이루어진다. => 실패 -> 로그인페이지로
         // 2. 성공하면 SecurityContextHolder(세션)객체를 생성한다.
         // 3. Authentication 객체를 생성하고 이 객체에 로그인 성공 정보(Account account)를 담아둔다.
-        return new User(account.getEmail(), account.getPassword(), grantedAuthorityList);
         // return new User(account.getEmail(), account.getPassword(), grantedAuthorityList);
+        // return new User(account.getEmail(), account.getPassword(), grantedAuthorityList);
+        return new CustomAccount(account);
     }
 }

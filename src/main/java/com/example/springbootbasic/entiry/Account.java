@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Account { // implements UserDetails
+public class Account{ // implements UserDetails
 
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

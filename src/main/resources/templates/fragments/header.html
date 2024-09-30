@@ -16,7 +16,7 @@
                 <ul class="navbar-nav ml-auto">
                    <span sec:authorize="isAuthenticated()">
                     <li class="nav-item">
-                        <span th:text="${#authentication.principal.username}">성공한 회원의 email</span>
+                        <span th:text="${#authentication.principal.account.firstname}">성공한 회원의 email</span>
                     </li>
                     <li class="nav-item">
                         <span th:each="auth : ${#authentication.authorities}" th:text="${auth.authority}"></span>
