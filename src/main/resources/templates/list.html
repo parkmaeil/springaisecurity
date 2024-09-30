@@ -17,9 +17,11 @@
     <div th:each="post : ${posts}">
            <h5 th:text="${post.title}">Title</h5>
            <p th:text="${post.body}">Body</p>
-           <span sec:authorize="isAuthenticated()">
-              <button th:if="${#authentication.principal.account.id == post.account.id}" class="btn btn-sm btn-danger">삭제</button>
-           </span>
+           <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
+            <span sec:authorize="isAuthenticated()">
+              <button type="submit" th:if="${#authentication.principal.account.id == post.account.id}" class="btn btn-sm btn-danger">삭제</button>
+            </span>
+           </form>
         <hr/>
     </div>
   </div>
