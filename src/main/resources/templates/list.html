@@ -2,7 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: head"></head>
-
+<script>
+    function deletePost(id){
+      fetch("http://localhost:8081/posts/del/"+id)
+      .then(response=>{
+          if(response.ok){
+            alert("삭제되었습니다.");
+            location.href="/";
+          }else{
+            alert("삭제실패.");
+          }
+       })
+      .catch(error=>{
+         console.log(error);
+      });
+    }
+</script>
 <body class="sub_page">
 
 <!-- Hero Section -->
@@ -22,6 +37,12 @@
               <button type="submit" th:if="${#authentication.principal.account.id == post.account.id}" class="btn btn-sm btn-danger">삭제</button>
             </span>
            </form>
+
+            <span sec:authorize="isAuthenticated()">
+              <button type="button" th:onclick="deletePost([[${post.id}]])"
+                      th:if="${#authentication.principal.account.id == post.account.id}"
+                      class="btn btn-sm btn-danger">삭제</button>
+            </span>
         <hr/>
     </div>
   </div>

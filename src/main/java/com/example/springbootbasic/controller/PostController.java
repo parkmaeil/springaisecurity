@@ -3,9 +3,7 @@ package com.example.springbootbasic.controller;
 import com.example.springbootbasic.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/posts")
@@ -19,5 +17,11 @@ public class PostController {
         postService.deleteById(id);
         return "redirect:/";
     }
-
+    // fetch() 요청(ajax)-->then(응답)
+    // @ResponseBody -> @RestController
+    @GetMapping("/del/{id}")
+    public @ResponseBody String del(@PathVariable Long id){
+        postService.deleteById(id);
+        return "ok";
+    }
 }
