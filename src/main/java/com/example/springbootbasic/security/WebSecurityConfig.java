@@ -4,6 +4,7 @@ import com.example.springbootbasic.util.Privileges;
 import com.example.springbootbasic.util.Roles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +15,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 //@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
     private static final String[] WHITELIST={
         "/",
@@ -40,7 +42,7 @@ public class WebSecurityConfig {
                      .requestMatchers("/admin/**").hasRole("ADMIN")
                      .requestMatchers("/editor/**").hasAnyRole("ADMIN", "EDITOR")
                      .requestMatchers("/test").hasAuthority(Privileges.ACCESS_ADMIN_PANEL.getPrivilege())
-                     .anyRequest().authenticated()
+                     .anyRequest().permitAll()
                 )
                 .formLogin(frm->frm
                         .loginPage("/login") // ?

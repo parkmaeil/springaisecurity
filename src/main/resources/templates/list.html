@@ -7,11 +7,14 @@
       fetch("http://localhost:8081/posts/del/"+id)
       .then(response=>{
           if(response.ok){
-            alert("삭제되었습니다.");
-            location.href="/";
+             return response.text();
           }else{
             alert("삭제실패.");
           }
+       })
+      .then(email=>{
+          alert("삭제한 사람:"+email);
+          location.href="/";
        })
       .catch(error=>{
          console.log(error);
