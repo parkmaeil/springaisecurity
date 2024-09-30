@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: head"></head>
 
 <body class="sub_page">
@@ -16,7 +17,10 @@
     <div th:each="post : ${posts}">
            <h5 th:text="${post.title}">Title</h5>
            <p th:text="${post.body}">Body</p>
-          <hr/>
+           <span sec:authorize="isAuthenticated()">
+              <button th:if="${#authentication.principal.account.id == post.account.id}" class="btn btn-sm btn-danger">삭제</button>
+           </span>
+        <hr/>
     </div>
   </div>
 </section>
